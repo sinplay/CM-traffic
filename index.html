@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>repl.it</title>
+    <title>CM-Traffic</title>
     <link href="index.css" rel="stylesheet" type="text/css" />
     <style>
     .card {
@@ -15,15 +15,33 @@
         margin: 16px;
         box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
     }
-
+    .header {
+        background-color: blue;
+        width:100%;   
+        padding: 10px;
+        color: white;
+        font-weight: bold;
+    }
+    body{
+        margin:0;
+    }
+.status{
+    width:90%;
+    text-align: right;
+}
+.roadName{
+    font-size: xx-large;
+}
     </style>
   </head>
   <body>
-    <center>CM-Traffic</center>
+      <div class="header"> 
+        <center>CM-Traffic</center>
+    </div>
    <div id="trafficDetail"> <div class="card" v-for="trafficBlock in trafficBlocks">
-      {{trafficBlock.roadName}}
+     <span class="roadName"> {{trafficBlock.roadName}}</span>
       <br/>
-      {{trafficBlock.status}}
+     <div class="status"> <span>{{trafficBlock.status}}</span></div>
     </div>
     </div>
     <script src="https://unpkg.com/vue"></script>
