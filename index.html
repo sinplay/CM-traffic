@@ -1,60 +1,93 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>CM-Traffic</title>
     <link href="index.css" rel="stylesheet" type="text/css" />
     <style>
-    .card {
-        padding: 16px;
-        position: relative;
-        box-sizing: border-box;
-        background: #fff;
-        border-radius: 2px;
-        margin: 16px;
-        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
-    }
-    .header {
-        background-color: blue;
-        width:100%;   
-        padding: 10px;
-        color: white;
-        font-weight: bold;
-    }
-    body{
-        margin:0;
-    }
-.status{
-    width:90%;
-    text-align: right;
-}
-.roadName{
-    font-size: xx-large;
-}
+        .card {
+            padding: 16px;
+            position: relative;
+            box-sizing: border-box;
+            background: #fff;
+            border-radius: 2px;
+            margin: 16px;
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+        }
+
+        .header {
+            background-color: blue;
+            width: 100%;
+            padding: 10px;
+            color: white;
+            font-weight: bold;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        .status {
+            width: 90%;
+            text-align: right;
+        }
+
+        .roadName {
+            font-size: xx-large;
+        }
+
+        .heavy {
+            color: red;
+        }
+
+        .light {
+            color: green;
+        }
+
+        .medium {
+            color: yellow;
+        }
     </style>
-  </head>
-  <body>
-      <div class="header"> 
+</head>
+
+<body>
+    <div class="header">
         <center>CM-Traffic</center>
     </div>
-   <div id="trafficDetail"> <div class="card" v-for="trafficBlock in trafficBlocks">
-     <span class="roadName"> {{trafficBlock.roadName}}</span>
-      <br/>
-     <div class="status"> <span>{{trafficBlock.status}}</span></div>
-    </div>
+    <div id="trafficDetail">
+        <div class="card" v-for="trafficBlock in trafficBlocks">
+            <span class="roadName"> {{trafficBlock.roadName}}</span>
+            <br/>
+            <div class="status">
+                <span class="heavy" v-if="trafficBlock.status=='Heavy'">{{trafficBlock.status}}</span>
+                <span class="medium" v-if="trafficBlock.status=='Medium'">{{trafficBlock.status}}</span>
+                <span class="light" v-if="trafficBlock.status=='Light'">{{trafficBlock.status}}</span>
+            </div>
+        </div>
     </div>
     <script src="https://unpkg.com/vue"></script>
     <script>
         var app = new Vue({
-             el: '#trafficDetail',
-             data: {
-                 trafficBlocks:[
-                     {roadName:"changkran", status:"Heavy"},
-                     {roadName:"Nimmanhemin",status:"Medium"}
-                 ]
-             }
+            el: '#trafficDetail',
+            data: {
+                trafficBlocks: [{
+                        roadName: "changkran",
+                        status: "Heavy"
+                    },
+                    {
+                        roadName: "Nimmanhemin",
+                        status: "Medium"
+                    },
+                    {
+                        roadName: "munmueng",
+                        status: "Light"
+                    }
+                ]
+            }
         })
     </script>
-  </body>
+</body>
+
 </html>
