@@ -6,58 +6,7 @@
     <meta name="viewport" content="width=device-width">
     <title>CM-Traffic</title>
     <link href="index.css" rel="stylesheet" type="text/css" />
-    <style>
-        .card {
-            padding: 16px;
-            position: relative;
-            box-sizing: border-box;
-            background: #fff;
-            border-radius: 2px;
-            margin: 16px;
-            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
-        }
-
-        .header {
-            background-color: blue;
-            width: 100%;
-            padding: 10px;
-            color: white;
-            font-weight: bold;
-        }
-
-        body {
-            margin: 0;
-        }
-
-        .status {
-            width: 90%;
-            text-align: right;
-        }
-
-        .roadName {
-            font-size: xx-large;
-        }
-
-        .heavy {
-            color: red;
-        }
-
-        .light {
-            color: green;
-        }
-
-        .medium {
-            color: yellow;
-        }
-
-        .inputRoad {
-            width: 90%;
-        }
-
-        .inputGroup {
-            padding: 10px;
-        }
-    </style>
+    
 </head>
 
 <body>
@@ -66,12 +15,12 @@
     </div>
     <div class="inputGroup">
         <form id="reportForm">
-        <input id="r" class="inputRoad" name="roadName" type="text">
-        <br/>
-        <input  name="status" type="radio" value="Heavy">Heavy
-        <input  name="status" type="radio" value="Medium">Medium
-        <input  name="status" type="radio" value="Light">Light
-        <input type="button" id="reportInfo" value="report information">
+            <input id="r" class="inputRoad" name="roadName" type="text">
+            <br/>
+            <input name="status" type="radio" value="Heavy">Heavy
+            <input name="status" type="radio" value="Medium">Medium
+            <input name="status" type="radio" value="Light">Light
+            <input type="button" id="reportInfo" value="report information">
         </form>
     </div>
     <div id="trafficDetail">
@@ -86,25 +35,7 @@
         </div>
     </div>
     <script src="https://unpkg.com/vue"></script>
-    <script>
-        var app = new Vue({
-            el: '#trafficDetail',
-            data: {
-                trafficBlocks: []
-            }
-        })
-        var f = (r, s) => {
-            var data = {
-                roadName: r,
-                status: s
-            }
-            app.$data.trafficBlocks.push(data)
-        }
-        document.getElementById("reportInfo").onclick = () => {
-            f(document.getElementById("r").value, document.getElementById("reportForm").elements["status"].value)
-            document.getElementById("reportForm").reset()
-        }   
-    </script>
+    <script src="index.js"></script>
 </body>
 
 </html>
