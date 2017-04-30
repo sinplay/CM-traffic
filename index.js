@@ -2,16 +2,18 @@ var app = new Vue({
     el: '#trafficDetail',
     data: {
         trafficBlocks: []
+    },
+    methods: {
+        add: function(roadName, status) {
+            var data={
+                roadName:roadName,status:status
+            }
+            this.trafficBlocks.push(data)
+        }
     }
 })
-var f = (r, s) => {
-    var data = {
-        roadName: r,
-        status: s
-    }
-    app.$data.trafficBlocks.push(data)
-}
 document.getElementById("reportInfo").onclick = () => {
-    f(document.getElementById("r").value, document.getElementById("reportForm").elements["status"].value)
+    app.add(document.getElementById("r").value, document.getElementById("reportForm").elements["status"].value)
     document.getElementById("reportForm").reset()
 }
+
