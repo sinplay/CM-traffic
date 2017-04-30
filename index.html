@@ -49,10 +49,12 @@
         .medium {
             color: yellow;
         }
-        .inputRoad{
+
+        .inputRoad {
             width: 90%;
         }
-        .inputGroup{
+
+        .inputGroup {
             padding: 10px;
         }
     </style>
@@ -63,12 +65,14 @@
         <center>CM-Traffic</center>
     </div>
     <div class="inputGroup">
-        <input class="inputRoad" name="roadName" type="text">
+        <form id="reportForm">
+        <input id="r" class="inputRoad" name="roadName" type="text">
         <br/>
-        <input name="status" type="radio" value="Heavy">Heavy
-        <input name="status" type="radio" value="Medium">Medium
-        <input name="status" type="radio" value="Light">Light
-        <button>report information</button>
+        <input  name="status" type="radio" value="Heavy">Heavy
+        <input  name="status" type="radio" value="Medium">Medium
+        <input  name="status" type="radio" value="Light">Light
+        <input type="button" id="reportInfo" value="report information">
+        </form>
     </div>
     <div id="trafficDetail">
         <div class="card" v-for="trafficBlock in trafficBlocks">
@@ -101,6 +105,17 @@
                 ]
             }
         })
+        var f = (r, s) => {
+            var data = {
+                roadName: r,
+                status: s
+            }
+            app.$data.trafficBlocks.push(data)
+        }
+        document.getElementById("reportInfo").onclick = () => {
+            f(document.getElementById("r").value, document.getElementById("reportForm").elements["status"].value)
+            document.getElementById("reportForm").reset()
+        }   
     </script>
 </body>
 
