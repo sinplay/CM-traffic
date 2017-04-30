@@ -3,12 +3,40 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>CM-traffic</title>
+    <title>repl.it</title>
+    <link href="index.css" rel="stylesheet" type="text/css" />
     <style>
-     .class 
+    .card {
+        padding: 16px;
+        position: relative;
+        box-sizing: border-box;
+        background: #fff;
+        border-radius: 2px;
+        margin: 16px;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    }
+
     </style>
   </head>
   <body>
     <center>CM-Traffic</center>
+   <div id="trafficDetail"> <div class="card" v-for="trafficBlock in trafficBlocks">
+      {{trafficBlock.roadName}}
+      <br/>
+      {{trafficBlock.status}}
+    </div>
+    </div>
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+        var app = new Vue({
+             el: '#trafficDetail',
+             data: {
+                 trafficBlocks:[
+                     {roadName:"changkran", status:"Heavy"},
+                     {roadName:"Nimmanhemin",status:"Medium"}
+                 ]
+             }
+        })
+    </script>
   </body>
 </html>
