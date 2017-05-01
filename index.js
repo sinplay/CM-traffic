@@ -14,7 +14,8 @@ var app = new Vue({
     }
 })
 document.getElementById("reportInfo").onclick = () => {
-    app.add(document.getElementById("r").value, document.getElementById("reportForm").elements["status"].value)
+    // app.add(document.getElementById("r").value, document.getElementById("reportForm").elements["status"].value)
+    saveData(document.getElementById("r").value, document.getElementById("reportForm").elements["status"].value)
     document.getElementById("reportForm").reset()
 }
 var config = {
@@ -26,14 +27,21 @@ var config = {
     messagingSenderId: "621929469587"
 };
 var convertFromFirebase = (data) => {
-  var ids = Object.keys(data)
-  return ids.map(id => data[id])
+    var ids = Object.keys(data)
+    return ids.map(id => data[id])
 }
 firebase.initializeApp(config);
 var database = firebase.database();
 var trafficDatabase = database.ref("/")
 trafficDatabase.on("value", (trafficBlocks) => {
     console.log(trafficBlocks.val())
-    var data =convertFromFirebase(trafficBlocks.val())
-    app.trafficBlocks=data
+    var data = convertFromFirebase(trafficBlocks.val())
+    app.trafficBlocks = data
 })
+
+function saveData(roadName, status) {
+    firebase.database().ref('/').push({
+        roadName: roadName,
+        status: status
+    });
+}
