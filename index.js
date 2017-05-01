@@ -1,23 +1,21 @@
 var app = new Vue({
     el: '#trafficDetail',
     data: {
-        trafficBlocks: []
+        trafficBlocks: [],
     },
     methods: {
-        add: function (roadName, status) {
-            var data = {
-                roadName: roadName,
-                status: status
-            }
-            this.trafficBlocks.push(data)
+        add: () => {
+            firebase.database().ref('/').push({
+                roadName: document.getElementById("r").value,
+                status: document.getElementById("reportForm").elements["status"].value
+            });
+            document.getElementById("reportForm").reset()
+        },
+        deleteMessage: (trafficBlock) => {
+            firebase.database().ref("/" + trafficBlock.id).remove()
         }
     }
 })
-document.getElementById("reportInfo").onclick = () => {
-    // app.add(document.getElementById("r").value, document.getElementById("reportForm").elements["status"].value)
-    saveData(document.getElementById("r").value, document.getElementById("reportForm").elements["status"].value)
-    document.getElementById("reportForm").reset()
-}
 var config = {
     apiKey: "AIzaSyAFV4VAHm0Xa1EJt48xzVldwv3xv_f6kww",
     authDomain: "cm-traffic.firebaseapp.com",
@@ -26,16 +24,25 @@ var config = {
     storageBucket: "cm-traffic.appspot.com",
     messagingSenderId: "621929469587"
 };
+
 var convertFromFirebase = (data) => {
+    var emptyData = []
+    if (data == null || data == undefined) {
+        return []
+    }
     var ids = Object.keys(data)
-    return ids.map(id => data[id])
+    return ids.map(id => {
+        var beforeInfo = data[id]
+        beforeInfo.id = id
+        return beforeInfo
+    })
+
 }
 firebase.initializeApp(config);
 var database = firebase.database();
 var trafficDatabase = database.ref("/")
 trafficDatabase.on("value", (trafficBlocks) => {
-    console.log(trafficBlocks.val())
-    var data = convertFromFirebase(trafficBlocks.val())
+    var data = convertFromFirebase(trafficBlocks.val()).reverse()
     app.trafficBlocks = data
 })
 

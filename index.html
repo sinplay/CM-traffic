@@ -6,25 +6,28 @@
     <meta name="viewport" content="width=device-width">
     <title>CM-Traffic</title>
     <link href="index.css" rel="stylesheet" type="text/css" />
-    
+
 </head>
 
 <body>
     <div class="header">
         <center>CM-Traffic</center>
     </div>
-    <div class="inputGroup">
-        <form id="reportForm">
-            <input id="r" class="inputRoad" name="roadName" type="text">
-            <br/>
-            <input name="status" type="radio" value="Heavy">Heavy
-            <input name="status" type="radio" value="Medium">Medium
-            <input name="status" type="radio" value="Light">Light
-            <input type="button" id="reportInfo" value="report information">
-        </form>
-    </div>
+
     <div id="trafficDetail">
+        <div class="inputGroup">
+            <form id="reportForm">
+                <input id="r" class="inputRoad" name="roadName" type="text">
+                <br/>
+                <input name="status" type="radio" value="Heavy">Heavy
+                <input name="status" type="radio" value="Medium">Medium
+                <input name="status" type="radio" value="Light">Light
+                <input v-on:click="add" type="button" id="reportInfo" value="report information">
+            </form>
+        </div>
         <div class="card" v-for="trafficBlock in trafficBlocks">
+            <div class="closeButton"><span v-on:click="deleteMessage(trafficBlock)">X</span></div>
+            <br/>
             <span class="roadName"> {{trafficBlock.roadName}}</span>
             <br/>
             <div class="status">
