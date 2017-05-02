@@ -59,6 +59,7 @@ body {
 
 .inputGroup {
     padding: 10px;
+    font-size: larger;
 }
 .closeButton{
     text-align: right;
