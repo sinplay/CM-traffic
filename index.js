@@ -5,15 +5,14 @@ var app = new Vue({
     },
     methods: {
         add: () => {
-            firebase.database().ref('road').push({
+            firebase.database().ref('/').push({
                 roadName: document.getElementById("r").value,
                 status: document.getElementById("reportForm").elements["status"].value
             });
             document.getElementById("reportForm").reset()
         },
         deleteMessage: (trafficBlock) => {
-          //  firebase.database().ref('road'+ trafficBlock.id).remove()
-          alert(trafficBlock.id)
+            firebase.database().ref('/' + trafficBlock.id).remove()
         }
     }
 })
@@ -24,13 +23,14 @@ var config = {
     projectId: "time-73b79",
     storageBucket: "time-73b79.appspot.com",
     messagingSenderId: "569063702966"
-  };
+};
 
 var convertFromFirebase = (data) => {
     var emptyData = []
     if (data == null || data == undefined) {
         return []
     }
+
     var ids = Object.keys(data)
     return ids.map(id => {
         var beforeInfo = data[id]
@@ -41,14 +41,14 @@ var convertFromFirebase = (data) => {
 }
 firebase.initializeApp(config);
 var database = firebase.database();
-var trafficDatabase = database.ref("road")
+var trafficDatabase = database.ref("/")
 trafficDatabase.on("value", (trafficBlocks) => {
     var data = convertFromFirebase(trafficBlocks.val()).reverse()
     app.trafficBlocks = data
 })
 
 function saveData(roadName, status) {
-    firebase.database().ref('road').push({
+    firebase.database().ref('/').push({
         roadName: roadName,
         status: status
     });
