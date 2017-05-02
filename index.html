@@ -11,7 +11,10 @@
 
 <body>
     <div class="header">
-        <center>CM-Traffic</center>
+        <center>CM-traffic</center>
+        <br/>
+        <center>สภาพการจารจรเชียงใหม่
+            <center>
     </div>
 
     <div id="trafficDetail">
@@ -19,14 +22,14 @@
             <form id="reportForm">
                 <input id="r" class="inputRoad" name="roadName" type="text">
                 <br/>
-                <input name="status" type="radio" value="Heavy">Heavy
-                <input name="status" type="radio" value="Medium">Medium
-                <input name="status" type="radio" value="Light">Light
-                <input v-on:click="add" type="button" id="reportInfo" value="report information">
+                <input name="status" type="radio" value="Heavy">ติดหนัก
+                <input name="status" type="radio" value="Medium">ปานกลาง
+                <input name="status" type="radio" value="Light">โล่ง
+                <input v-on:click="add" type="button" id="reportInfo" value="Update Info">
             </form>
         </div>
         <div class="card" v-for="trafficBlock in trafficBlocks">
-            <div class="closeButton"><span v-on:click="deleteMessage(trafficBlock)">X</span></div>
+            <div class="closeButton"><span v-on:click="deleteMessage(trafficBlock)"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/PlayStationX.svg/1229px-PlayStationX.svg.png" height="17" width="17"></span></div>
             <br/>
             <span class="roadName"> {{trafficBlock.roadName}}</span>
             <br/>

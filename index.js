@@ -5,25 +5,26 @@ var app = new Vue({
     },
     methods: {
         add: () => {
-            firebase.database().ref('/').push({
+            firebase.database().ref('road').push({
                 roadName: document.getElementById("r").value,
                 status: document.getElementById("reportForm").elements["status"].value
             });
             document.getElementById("reportForm").reset()
         },
         deleteMessage: (trafficBlock) => {
-            firebase.database().ref("/" + trafficBlock.id).remove()
+          //  firebase.database().ref('road'+ trafficBlock.id).remove()
+          alert(trafficBlock.id)
         }
     }
 })
 var config = {
-    apiKey: "AIzaSyAFV4VAHm0Xa1EJt48xzVldwv3xv_f6kww",
-    authDomain: "cm-traffic.firebaseapp.com",
-    databaseURL: "https://cm-traffic.firebaseio.com",
-    projectId: "cm-traffic",
-    storageBucket: "cm-traffic.appspot.com",
-    messagingSenderId: "621929469587"
-};
+    apiKey: "AIzaSyDURyuCaBOE0zHOMPnBCi24cOMZoAYWoek",
+    authDomain: "time-73b79.firebaseapp.com",
+    databaseURL: "https://time-73b79.firebaseio.com",
+    projectId: "time-73b79",
+    storageBucket: "time-73b79.appspot.com",
+    messagingSenderId: "569063702966"
+  };
 
 var convertFromFirebase = (data) => {
     var emptyData = []
@@ -40,14 +41,14 @@ var convertFromFirebase = (data) => {
 }
 firebase.initializeApp(config);
 var database = firebase.database();
-var trafficDatabase = database.ref("/")
+var trafficDatabase = database.ref("road")
 trafficDatabase.on("value", (trafficBlocks) => {
     var data = convertFromFirebase(trafficBlocks.val()).reverse()
     app.trafficBlocks = data
 })
 
 function saveData(roadName, status) {
-    firebase.database().ref('/').push({
+    firebase.database().ref('road').push({
         roadName: roadName,
         status: status
     });
