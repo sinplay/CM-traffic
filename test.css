@@ -1,0 +1,85 @@
+.card {
+    padding: 16px;
+    position: relative;
+    box-sizing: border-box;
+    background: #fff;
+    border-radius: 2px;
+    margin: 16px;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+.header {
+    background-color: blue;
+    width: 100%;
+    padding: 10px;
+    color: white;
+    font-weight: bold;
+    box-sizing: border-box;
+    border-radius: 2px;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    font-size: x-large;
+}
+
+body {
+    margin: 0;
+    background-color: lightsteelblue;
+}
+
+.status {
+    width: 90%;
+    text-align: right;
+}
+
+.roadName {
+    font-size: xx-large;
+    
+}
+
+.heavy {
+    color: red;
+    font-weight: bold;
+    font-size: larger;
+}
+
+.light {
+    color: green;
+    font-weight: bold;
+    font-size: larger;
+}
+
+.medium {
+    color: blue;
+    font-weight: bold;
+    font-size: larger;
+}
+
+.inputRoad {
+    width: 90%;
+}
+
+.inputGroup {
+    padding: 10px;
+    font-size: larger;
+}
+.closeButton{
+    text-align: right;
+}
+.heavyBox{
+    
+}
+.mediumBox{
+    
+}
+.lightBox{
+    
+}
+.time{
+    margin-left: 2px;
+    width: 13px;
+    text-align: right;
+}
+.showTime{
+    font-size: large;
+    width: 80%;
+    text-align: right;
+}
