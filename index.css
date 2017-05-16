@@ -22,7 +22,7 @@
 
 body {
     margin: 0;
-    background-color: lightcyan;
+    background-color: lightsteelblue;
 }
 
 .status {
@@ -72,4 +72,14 @@ body {
 }
 .lightBox{
     
+}
+.time{
+    margin-left: 2px;
+    width: 13px;
+    text-align: right;
+}
+.showTime{
+    font-size: large;
+    width: 80%;
+    text-align: right;
 }

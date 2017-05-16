@@ -5,26 +5,27 @@ var app = new Vue({
     },
     methods: {
         add: () => {
-            firebase.database().ref('/road').push({
+            firebase.database().ref('/cmTraffic').push({
                 roadName: document.getElementById("r").value,
-                status: document.getElementById("reportForm").elements["status"].value
+                status: document.getElementById("reportForm").elements["status"].value,
+                hour: document.getElementById('h').value,
+                min: document.getElementById('m').value,
             });
             document.getElementById("reportForm").reset()
         },
         deleteMessage: (trafficBlock) => {
-            firebase.database().ref('/road' + trafficBlock.id).remove()
-            alert(trafficBlock.id)
+            firebase.database().ref('/cmTraffic/' + trafficBlock.id).remove()
         }
     }
 })
 var config = {
-    apiKey: "AIzaSyDURyuCaBOE0zHOMPnBCi24cOMZoAYWoek",
-    authDomain: "time-73b79.firebaseapp.com",
-    databaseURL: "https://time-73b79.firebaseio.com",
-    projectId: "time-73b79",
-    storageBucket: "time-73b79.appspot.com",
-    messagingSenderId: "569063702966"
-};
+    apiKey: "AIzaSyAMffnJA0bonruA8UoQNtDKoqVN1mUlA5Q",
+    authDomain: "test-time-5afb8.firebaseapp.com",
+    databaseURL: "https://test-time-5afb8.firebaseio.com",
+    projectId: "test-time-5afb8",
+    storageBucket: "test-time-5afb8.appspot.com",
+    messagingSenderId: "107836721933"
+  };
 
 var convertFromFirebase = (data) => {
     var emptyData = []
@@ -42,15 +43,17 @@ var convertFromFirebase = (data) => {
 }
 firebase.initializeApp(config);
 var database = firebase.database();
-var trafficDatabase = database.ref('/road')
+var trafficDatabase = database.ref('/cmTraffic')
 trafficDatabase.on("value", (trafficBlocks) => {
     var data = convertFromFirebase(trafficBlocks.val()).reverse()
     app.trafficBlocks = data
 })
 
-function saveData(roadName, status) {
-    firebase.database().ref('/road').push({
+function saveData(roadName, status, hour, min ,sec) {
+    firebase.database().ref('/cmTaffic').push({
         roadName: roadName,
-        status: status
+        status: status,
+        hour: hour,
+        min: min,
     });
 }
