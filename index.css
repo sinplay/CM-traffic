@@ -55,6 +55,7 @@ body {
 
 .inputRoad {
     width: 90%;
+    font-size:x-large;
 }
 
 .inputGroup {
@@ -75,7 +76,7 @@ body {
 }
 .time{
     margin-left: 2px;
-    width: 13px;
+    width: 16px;
     text-align: right;
 }
 .showTime{
